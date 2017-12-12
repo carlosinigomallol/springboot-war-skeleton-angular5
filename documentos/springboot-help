@@ -1,0 +1,97 @@
+This is spring boot war skeleton application.
+
+Steps:
+
+mvn clean package
+
+
+Important:
+
+To get war file executable:
+
+	Edit module web pom.xml 
+		<package>war</package>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-tomcat</artifactId>
+		    <version>1.5.2.RELEASE</version>
+		    <scope>provided</scope>
+		</dependency>
+
+		<plugin>
+			<artifactId>maven-war-plugin</artifactId>
+			<configuration>
+				<failOnMissingWebXml>false</failOnMissingWebXml>
+			</configuration>
+		</plugin>
+
+		<finalName>charlie</finalName> <!-- Same name as property field 'server.contextPath' of application.properties file
+
+	Edit file MyApplication.java:
+
+		@SpringBootApplication
+		@ComponentScan("com.charlie.example.web.properties,com.charlie.example.services.service, com.charlie.example.services.dao,com.charlie.example.web.controller")
+		@EntityScan("com.charlie.example.model.entity")
+		public class MyApplication extends SpringBootServletInitializer {
+
+		    @Override
+		    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+			return application.sources(MyApplication.class);
+		    }
+
+		    public static void main(String[] args) throws Exception {
+			SpringApplication.run(MyApplication.class, args);
+		    }
+		}    
+		
+
+	
+	Execute --> mvn clean package
+
+Notas 2:
+
+rm webapp directory
+
+Execute 'ng new webapp' in web/src/main 
+It generates an angular4 project with webapp name
+cd webapp
+ng serve -o //To test webapp in localhost
+
+
+@CrossOrigin //Para solventar este problema tenemos que configurar el servidor para que algunas URL soporten invocaciones CORS (desde otros dominios)
+//The @CrossOrigin annotation in the above controller is used to enable Cross-Origin requests. This is required because we’ll be accessing the apis from angular’s frontend server.
+
+
+
+npm install @angular/material
+npm install --save @angular/cdk
+ 
+import {MatDatepickerModule,MatNativeDateModule,MatFormFieldModule,MatInputModule} from '@angular/material'; 
+
+imports: [
+  	BrowserModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    
+<mat-form-field> <input matInput
+				[matDatepicker]="picker" placeholder="Fecha" [(ngModel)]="newArticle.entryDate"
+				name="entryDate">
+			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker> </mat-form-field> 
+En style.css 
+@import "~https://fonts.googleapis.com/icon?family=Material+Icons"; 
+@import "~@angular/material/prebuilt-themes/indigo-pink.css"; 
+ 
+ 
+DATETIMEPICKER
+
+npm install ng-pick-datetime --save
+npm install font-awesome --save
+/src/assets/picker.min.css
+/src/assets/font
+import { DateTimePickerModule } from 'ng-pick-datetime';
+<owl-date-time [(ngModel)]="newArticle.completeEntryDate" name="completeEntryDate" [locale]="es" required></owl-date-time>
+ 
+ 
